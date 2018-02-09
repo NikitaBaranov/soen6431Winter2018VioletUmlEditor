@@ -99,10 +99,20 @@ public class MenuFactory
         return this.documentMenu;
     }
 
+    public Soen6431Menu getSoen6431Menu(MainFrame editorFrame)
+    {
+        if (this.Soen6431Menu == null)
+        {
+            this.Soen6431Menu = new Soen6431Menu(editorFrame);
+        }
+        return this.Soen6431Menu;
+    }
+
     private EditMenu editMenu;
     private FileMenu fileMenu;
     private HelpMenu helpMenu;
     private ViewMenu viewMenu;
     private DocumentMenu documentMenu;
+    private Soen6431Menu Soen6431Menu;
 
 }
