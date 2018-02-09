@@ -22,6 +22,7 @@ public class Soen6431Menu extends JMenu {
 
     private void createMenu()
     {
+/*
         feature1Item.addActionListener(new ActionListener()
         {
             @Override
@@ -31,9 +32,10 @@ public class Soen6431Menu extends JMenu {
                 dialog.setVisible(true);
             }
         });
+*/
         this.add(feature1Item);
 
-        feature2Item.addActionListener(new ActionListener()
+/*        feature2Item.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -41,7 +43,7 @@ public class Soen6431Menu extends JMenu {
                 ShortcutDialog dialog = new ShortcutDialog(mainFrame);
                 dialog.setVisible(true);
             }
-        });
+        });*/
         this.add(feature2Item);
 
         feature3Item.addActionListener(new ActionListener()
@@ -62,10 +64,10 @@ public class Soen6431Menu extends JMenu {
     private JFrame mainFrame;
 
     @ResourceBundleBean(key = "Soen6431Menu.feature1")
-    private JMenuItem feature1Item;
+    private JCheckBoxMenuItem feature1Item;
 
     @ResourceBundleBean(key = "Soen6431Menu.feature2")
-    private JMenuItem feature2Item;
+    private JCheckBoxMenuItem feature2Item;
 
     @ResourceBundleBean(key = "Soen6431Menu.feature3")
     private JMenuItem feature3Item;
