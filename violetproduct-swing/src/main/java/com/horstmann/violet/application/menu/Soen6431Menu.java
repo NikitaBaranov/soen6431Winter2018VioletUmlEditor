@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @ResourceBundleBean(resourceReference = MenuFactory.class)
 public class Soen6431Menu extends JMenu {
@@ -75,7 +77,11 @@ public class Soen6431Menu extends JMenu {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                ShortcutDialog dialog = new ShortcutDialog(mainFrame);
+                Map<String, String> mapToShow = new HashMap<>();
+                mapToShow.put("Name1", "1");
+                mapToShow.put("Name2", "2");
+                mapToShow.put("Name3", "3");
+                ListDialog dialog = new ListDialog(mainFrame, "Connections", mapToShow);
                 dialog.setVisible(true);
             }
         });
