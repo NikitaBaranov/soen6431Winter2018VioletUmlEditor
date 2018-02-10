@@ -297,6 +297,10 @@ public class MainFrame extends JFrame
         }
         return this.menuFactory;
     }
+
+    public DialogFactory getDialogFactory(){
+        return dialogFactory;
+    }
     
     
     /**

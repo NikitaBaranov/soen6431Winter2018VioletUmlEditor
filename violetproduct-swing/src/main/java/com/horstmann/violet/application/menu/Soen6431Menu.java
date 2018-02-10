@@ -4,10 +4,13 @@ import com.horstmann.violet.application.gui.MainFrame;
 import com.horstmann.violet.application.help.ShortcutDialog;
 import com.horstmann.violet.framework.injection.resources.ResourceBundleInjector;
 import com.horstmann.violet.framework.injection.resources.annotation.ResourceBundleBean;
+import com.horstmann.violet.product.diagram.abstracts.edge.IEdge;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @ResourceBundleBean(resourceReference = MenuFactory.class)
 public class Soen6431Menu extends JMenu {
@@ -22,28 +25,49 @@ public class Soen6431Menu extends JMenu {
 
     private void createMenu()
     {
-/*
         feature1Item.addActionListener(new ActionListener()
         {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                ShortcutDialog dialog = new ShortcutDialog(mainFrame);
-                dialog.setVisible(true);
+            public void actionPerformed(ActionEvent e) {
+                Collection<IEdge> temp = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllEdges();
+                ArrayList<IEdge> temp_arraylist = new ArrayList(temp);
+                for (int i = 0; i < temp_arraylist.size(); i++) {
+                    for (int j = 0; j < temp_arraylist.size(); j++) {
+                        IEdge itemp = temp_arraylist.get(i);
+                        IEdge jtemp = temp_arraylist.get(j);
+
+                        if (itemp.getStartNode().equals(jtemp.getEndNode()) || itemp.getEndNode().equals(jtemp.getStartNode())) {
+                            System.out.println("Bidirection occuring");
+                            mainFrame.getDialogFactory().showErrorDialog("BidirectionalOccuring");
+                            return;
+                        }
+                    }
+                }
             }
         });
-*/
+
         this.add(feature1Item);
 
-/*        feature2Item.addActionListener(new ActionListener()
+        feature2Item.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                ShortcutDialog dialog = new ShortcutDialog(mainFrame);
-                dialog.setVisible(true);
+                Collection<IEdge> temp2 = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllEdges();
+                ArrayList<IEdge> temp_arraylist2 = new ArrayList<IEdge>(temp2);
+                for(int i=0;i<temp_arraylist2.size();i++) {
+                    IEdge itemp2 = temp_arraylist2.get(i);
+
+
+                    if (itemp2.getStartNode().equals(itemp2.getEndNode())) {
+                        System.out.println("Class showes relation to itself");
+                        mainFrame.getDialogFactory().showErrorDialog("Class showes relation to itself");
+                        return;
+                    }
+                }
             }
-        });*/
+        });
+
         this.add(feature2Item);
 
         feature3Item.addActionListener(new ActionListener()
@@ -61,13 +85,13 @@ public class Soen6431Menu extends JMenu {
     /**
      * Main app frame where this menu is attached to
      */
-    private JFrame mainFrame;
+    private MainFrame mainFrame;
 
     @ResourceBundleBean(key = "Soen6431Menu.feature1")
-    private JCheckBoxMenuItem feature1Item;
+    private JMenuItem feature1Item;
 
     @ResourceBundleBean(key = "Soen6431Menu.feature2")
-    private JCheckBoxMenuItem feature2Item;
+    private JMenuItem feature2Item;
 
     @ResourceBundleBean(key = "Soen6431Menu.feature3")
     private JMenuItem feature3Item;
