@@ -37,11 +37,14 @@ public class Soen6431Menu extends JMenu {
                     for (int j = 0; j < temp_arraylist.size(); j++) {
                         IEdge itemp = temp_arraylist.get(i);
                         IEdge jtemp = temp_arraylist.get(j);
-
-                        if (itemp.getStartNode().equals(jtemp.getEndNode()) || itemp.getEndNode().equals(jtemp.getStartNode())) {
-                            System.out.println("Bidirection occuring");
-                            mainFrame.getDialogFactory().showErrorDialog("BidirectionalOccuring");
-                            return;
+                     if (i + j > 1) {
+                          System.out.println( "Multi realation to itself Occured");
+                          mainFrame.getDialogFactory().showErrorDialog( "Multi realation to itself Occured");
+                          return;
+                       // if (itemp.getStartNode().equals(jtemp.getEndNode()) || itemp.getEndNode().equals(jtemp.getStartNode())) {
+                         //   System.out.println("Bidirection occuring");
+                         //   mainFrame.getDialogFactory().showErrorDialog("BidirectionalOccuring");
+                          //  return;
                         }
                     }
                 }
