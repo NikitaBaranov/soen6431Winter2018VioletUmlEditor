@@ -31,45 +31,47 @@ public class Soen6431Menu extends JMenu {
     {
         feature1Item.addActionListener(new ActionListener()
         {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Collection<IEdge> temp = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllEdges();
-                ArrayList<IEdge> temp_arraylist = new ArrayList(temp);
-                for (int i = 0; i < temp_arraylist.size(); i++) {
-                    for (int j = 0; j < temp_arraylist.size(); j++) {
-                        IEdge itemp = temp_arraylist.get(i);
-                        IEdge jtemp = temp_arraylist.get(j);
+        	 @Override
+             public void actionPerformed(ActionEvent e)
+             {
+                 Collection<IEdge> temp2 = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllEdges();
+                 ArrayList<IEdge> temp_arraylist2 = new ArrayList<IEdge>(temp2);
+                 for(int i=0;i<temp_arraylist2.size();i++) {
+                     IEdge itemp2 = temp_arraylist2.get(i);
 
-                        if (itemp.getStartNode().equals(jtemp.getEndNode()) || itemp.getEndNode().equals(jtemp.getStartNode())) {
-                            System.out.println("Bidirection occuring");
-                            mainFrame.getDialogFactory().showErrorDialog("BidirectionalOccuring");
-                            return;
-                        }
-                    }
-                }
-            }
+
+                     if (itemp2.getStartNode().equals(itemp2.getEndNode())) {
+                         System.out.println("Class showes relation to itself");
+                         mainFrame.getDialogFactory().showErrorDialog("Class showes relation to itself");
+                         return;
+                     }
+                 }
+             }
         });
 
         this.add(feature1Item);
 
         feature2Item.addActionListener(new ActionListener()
         {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                Collection<IEdge> temp2 = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllEdges();
-                ArrayList<IEdge> temp_arraylist2 = new ArrayList<IEdge>(temp2);
-                for(int i=0;i<temp_arraylist2.size();i++) {
-                    IEdge itemp2 = temp_arraylist2.get(i);
+        	 @Override
+             public void actionPerformed(ActionEvent e) {
+                 Collection<IEdge> temp = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllEdges();
+                 ArrayList<IEdge> temp_arraylist = new ArrayList(temp);
+                 for (int i = 0; i < temp_arraylist.size(); i++) {
+                     for (int j = 0; j < temp_arraylist.size(); j++) {
+                         IEdge itemp = temp_arraylist.get(i);
+                         IEdge jtemp = temp_arraylist.get(j);
 
-
-                    if (itemp2.getStartNode().equals(itemp2.getEndNode())) {
-                        System.out.println("Class showes relation to itself");
-                        mainFrame.getDialogFactory().showErrorDialog("Class showes relation to itself");
-                        return;
-                    }
-                }
-            }
+                         if (itemp.getStartNode().equals(jtemp.getEndNode()) &&
+                         		itemp.getEndNode().equals(jtemp.getStartNode())) {
+                             System.out.println("Bidirection occuring");
+                             mainFrame.getDialogFactory().showErrorDialog("BidirectionalOccuring");
+                             return;
+                         }
+                     }
+                 }
+             }
+           
         });
 
         this.add(feature2Item);
