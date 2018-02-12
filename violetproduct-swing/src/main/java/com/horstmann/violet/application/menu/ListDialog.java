@@ -1,17 +1,14 @@
 package com.horstmann.violet.application.menu;
 
-import com.horstmann.violet.framework.injection.resources.ResourceBundleInjector;
-import com.horstmann.violet.framework.injection.resources.ResourceShortcutProvider;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Map;
 
 public class ListDialog extends JDialog {
 
     private JPanel listDialog;
 
-    ListDialog(JFrame parent, String dialogTitle, Map<String, String> mapToShow ){
+    ListDialog(JFrame parent, String dialogTitle, String[][] tableToShow) {
         super(parent);
 
         this.setTitle(dialogTitle);
@@ -20,21 +17,19 @@ public class ListDialog extends JDialog {
         this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.getContentPane().setLayout(new BorderLayout());
-        this.getContentPane().add(buildPanel(mapToShow), BorderLayout.CENTER);
+        this.getContentPane().add(buildPanel(tableToShow), BorderLayout.CENTER);
         pack();
         setCenterLocation(parent);
 
     }
 
-    private JPanel buildPanel(Map<String, String> mapToShow)
-    {
-        if(listDialog == null)
-        {
+    private JPanel buildPanel(String[][] tableToShow) {
+        if (listDialog == null) {
             listDialog = new JPanel(new BorderLayout());
 
             String[] columnNames = {"Class name", "Metric"};
 
-            JTable table = new JTable(prepareDataForTable(mapToShow), columnNames);
+            JTable table = new JTable(tableToShow, columnNames);
             table.setEnabled(false);
             table.setCellSelectionEnabled(false);
             table.setShowGrid(true);
@@ -49,21 +44,7 @@ public class ListDialog extends JDialog {
         return this.listDialog;
     }
 
-    private String[][] prepareDataForTable(Map<String, String> mapToShow)
-    {
-        String[][] tableToShow = new String[mapToShow.size()][2];
-
-        int i = 0;
-        for(Map.Entry<String, String> el : mapToShow.entrySet()){
-            tableToShow[i][0] = el.getKey();
-            tableToShow[i][1] = el.getValue();
-            i++;
-        }
-        return tableToShow;
-    }
-
-    private void setCenterLocation(JFrame parent)
-    {
+    private void setCenterLocation(JFrame parent) {
         setLocation((parent.getWidth() - getWidth()) / 2, (parent.getHeight() - getHeight()) / 2);
     }
 }
