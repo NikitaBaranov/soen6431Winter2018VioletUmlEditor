@@ -5,6 +5,8 @@ import com.horstmann.violet.application.help.ShortcutDialog;
 import com.horstmann.violet.framework.injection.resources.ResourceBundleInjector;
 import com.horstmann.violet.framework.injection.resources.annotation.ResourceBundleBean;
 import com.horstmann.violet.product.diagram.abstracts.edge.IEdge;
+import com.horstmann.violet.product.diagram.abstracts.node.INode;
+import com.horstmann.violet.product.diagram.classes.node.ClassNode;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -77,10 +79,16 @@ public class Soen6431Menu extends JMenu {
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                Collection<INode> iNodes  = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllNodes();
                 Map<String, String> mapToShow = new HashMap<>();
-                mapToShow.put("Name1", "1");
-                mapToShow.put("Name2", "2");
-                mapToShow.put("Name3", "3");
+                for(INode node : iNodes){
+                    ClassNode classNode = (ClassNode) node;
+                    String NodeName=classNode.getName().toEdit();
+                    if (NodeName.length()==0)
+                        NodeName="NoNameClass";
+                    String EdgesNum=String.valueOf(classNode.getConnectedEdges().size());
+                    mapToShow.put(NodeName, EdgesNum);
+                }
                 ListDialog dialog = new ListDialog(mainFrame, "Connections", mapToShow);
                 dialog.setVisible(true);
             }
