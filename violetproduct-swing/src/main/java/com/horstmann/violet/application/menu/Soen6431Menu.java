@@ -5,7 +5,7 @@ import com.horstmann.violet.application.help.ShortcutDialog;
 import com.horstmann.violet.framework.injection.resources.ResourceBundleInjector;
 import com.horstmann.violet.framework.injection.resources.annotation.ResourceBundleBean;
 import com.horstmann.violet.product.diagram.abstracts.edge.IEdge;
-
+import com.horstmann.violet.product.diagram.abstracts.node.INode;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,26 +31,25 @@ public class Soen6431Menu extends JMenu {
         {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Collection<IEdge> temp = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllEdges();
-                ArrayList<IEdge> temp_arraylist = new ArrayList(temp);
-                for (int i = 0; i < temp_arraylist.size(); i++) {
-                    for (int j = 0; j < temp_arraylist.size(); j++) {
-                        IEdge itemp = temp_arraylist.get(i);
-                        IEdge jtemp = temp_arraylist.get(j);
-                     if (i + j > 1) {
-                          System.out.println( "Multi realation to itself Occured");
-                          mainFrame.getDialogFactory().showErrorDialog( "Multi realation to itself Occured");
-                          return;
-                       // if (itemp.getStartNode().equals(jtemp.getEndNode()) || itemp.getEndNode().equals(jtemp.getStartNode())) {
-                         //   System.out.println("Bidirection occuring");
-                         //   mainFrame.getDialogFactory().showErrorDialog("BidirectionalOccuring");
-                          //  return;
+            	Collection<INode> allActiveNodes = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllNodes();
+                for (INode currNode : allActiveNodes) {
+                    Collection<IEdge> allActiveEdgeForSpecificNode = currNode.getGraph().getAllEdges();
+                    int count = 0;
+                    for (IEdge currEdge : allActiveEdgeForSpecificNode) {
+                        if (currEdge.getStartNode().equals(currNode) && currEdge.getEndNode().equals(currNode)) {
+                            {
+                                count++;
+                                if (count > 1) {
+                                    mainFrame.getDialogFactory().showErrorDialog( "Multi realation to itself Occured");
+                                    return;
+                                }
+                            }
                         }
                     }
                 }
-            }
-        });
-
+             }            
+        } );
+        
         this.add(feature1Item);
 
         feature2Item.addActionListener(new ActionListener()
