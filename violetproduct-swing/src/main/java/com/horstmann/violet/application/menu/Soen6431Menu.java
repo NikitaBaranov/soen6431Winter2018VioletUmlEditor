@@ -86,10 +86,10 @@ public class Soen6431Menu extends JMenu {
                     for (int j = 0; j < temp_arraylist.size(); j++) {
                         IEdge itemp = temp_arraylist.get(i);
                         IEdge jtemp = temp_arraylist.get(j);
-
+                        if (itemp.getStartNode().equals(itemp.getEndNode())) continue;
+                        if (jtemp.getStartNode().equals(jtemp.getEndNode())) continue;
                         if (itemp.getStartNode().equals(jtemp.getEndNode()) &&
                                 itemp.getEndNode().equals(jtemp.getStartNode())) {
-                            // System.out.println("Bidirection occuring");
                             mainFrame.getDialogFactory().showErrorDialog("BidirectionalOccuring");
                             return;
                         }
@@ -98,7 +98,6 @@ public class Soen6431Menu extends JMenu {
             }
 
         });
-
         this.add(feature2Item);
 
         feature3Item.addActionListener(new ActionListener() {
