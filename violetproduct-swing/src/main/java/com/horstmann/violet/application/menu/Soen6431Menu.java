@@ -35,25 +35,6 @@ public class Soen6431Menu extends JMenu {
     }
 
     private void createMenu() {
-        //  feature1Item.addActionListener(new ActionListener()
-        //  {
-        //  	 @Override
-        //     public void actionPerformed(ActionEvent e)
-        //     {
-        //         Collection<IEdge> temp2 = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllEdges();
-        //          ArrayList<IEdge> temp_arraylist2 = new ArrayList<IEdge>(temp2);
-        //          for(int i=0;i<temp_arraylist2.size();i++) {
-        //               IEdge itemp2 = temp_arraylist2.get(i);
-
-
-        //             if (itemp2.getStartNode().equals(itemp2.getEndNode())) {
-        //                  System.out.println("Class showes relation to itself");
-        //                  mainFrame.getDialogFactory().showErrorDialog("Class showes relation to itself");
-        //                  return;
-        //                }
-        //          }
-        //      }
-        //  });
         feature1Item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -103,24 +84,24 @@ public class Soen6431Menu extends JMenu {
         feature3Item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Collection<INode> iNodes = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllNodes();
-                String[][] tableToShow = new String[iNodes.size()][2];
-                int line = 0;
-                int noNameIndex = 1;
-                for (INode node : iNodes) {
-                    ClassNode classNode = (ClassNode) node;
-                    String NodeName = classNode.getName().toEdit();
-                    if (NodeName.length() == 0) {
-                        NodeName = "NoNameClass " + noNameIndex;
-                        noNameIndex++;
-                    }
-                    String EdgesNum = String.valueOf(classNode.getConnectedEdges().size());
-                    tableToShow[line][0] = NodeName;
-                    tableToShow[line][1] = EdgesNum;
-                    line++;
-
-                }
-                ListDialog dialog = new ListDialog(mainFrame, "CBO measures", tableToShow);
+//                Collection<INode> iNodes = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllNodes();
+//                String[][] tableToShow = new String[iNodes.size()][2];
+//                int line = 0;
+//                int noNameIndex = 1;
+//                for (INode node : iNodes) {
+//                    ClassNode classNode = (ClassNode) node;
+//                    String NodeName = classNode.getName().toEdit();
+//                    if (NodeName.length() == 0) {
+//                        NodeName = "NoNameClass " + noNameIndex;
+//                        noNameIndex++;
+//                    }
+//                    String EdgesNum = String.valueOf(classNode.getConnectedEdges().size());
+//                    tableToShow[line][0] = NodeName;
+//                    tableToShow[line][1] = EdgesNum;
+//                    line++;
+//
+//                }
+                ListDialog dialog = new ListDialog(mainFrame, "CBO measures", Soen6431.feature3(mainFrame.getActiveWorkspace().getGraphFile().getGraph()));
                 dialog.setVisible(true);
             }
         });
