@@ -5,12 +5,10 @@ import com.horstmann.violet.framework.injection.resources.ResourceBundleInjector
 import com.horstmann.violet.framework.injection.resources.annotation.ResourceBundleBean;
 import com.horstmann.violet.product.diagram.abstracts.edge.IEdge;
 import com.horstmann.violet.product.diagram.abstracts.node.INode;
-import com.horstmann.violet.product.diagram.classes.node.ClassNode;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Collection;
 
 @ResourceBundleBean(resourceReference = MenuFactory.class)
@@ -61,21 +59,25 @@ public class Soen6431Menu extends JMenu {
         feature2Item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Collection<IEdge> temp = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllEdges();
+                //boolean testvalue=false;
+                /*Collection<IEdge> temp = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllEdges();
                 ArrayList<IEdge> temp_arraylist = new ArrayList(temp);
                 for (int i = 0; i < temp_arraylist.size(); i++) {
                     for (int j = 0; j < temp_arraylist.size(); j++) {
                         IEdge itemp = temp_arraylist.get(i);
                         IEdge jtemp = temp_arraylist.get(j);
                         if (itemp.getStartNode().equals(itemp.getEndNode())) continue;
-                        if (jtemp.getStartNode().equals(jtemp.getEndNode())) continue;
+                       if (jtemp.getStartNode().equals(jtemp.getEndNode())) continue;
                         if (itemp.getStartNode().equals(jtemp.getEndNode()) &&
                                 itemp.getEndNode().equals(jtemp.getStartNode())) {
-                            mainFrame.getDialogFactory().showErrorDialog("BidirectionalOccuring");
-                            return;
+
                         }
                     }
-                }
+                }*/
+                //testvalue=Soen6431.feature2(mainFrame.getActiveWorkspace().getGraphFile().getGraph());
+                if (Soen6431.feature2(mainFrame.getActiveWorkspace().getGraphFile().getGraph()))
+                    mainFrame.getDialogFactory().showErrorDialog("BidirectionalOccuring");
+                //return;
             }
 
         });
