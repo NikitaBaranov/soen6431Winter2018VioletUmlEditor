@@ -119,6 +119,7 @@ public class MainFrame extends JFrame
         menuBar.add(menuFactory.getViewMenu(this));
         menuBar.add(menuFactory.getDocumentMenu(this));
         menuBar.add(menuFactory.getHelpMenu(this));
+        menuBar.add(menuFactory.getSoen6431Menu(this));
         setJMenuBar(menuBar);
     }
     
@@ -295,6 +296,10 @@ public class MainFrame extends JFrame
             menuFactory = new MenuFactory();
         }
         return this.menuFactory;
+    }
+
+    public DialogFactory getDialogFactory(){
+        return dialogFactory;
     }
     
     

@@ -1,13 +1,13 @@
 package com.horstmann.violet.application.menu;
 
 import java.util.ArrayList;
-
 import com.horstmann.violet.product.diagram.abstracts.IGraph;
 import com.horstmann.violet.product.diagram.abstracts.edge.IEdge;
 import com.horstmann.violet.product.diagram.abstracts.node.INode;
 import com.horstmann.violet.product.diagram.classes.node.ClassNode;
 
 public class Soen6431 {
+  
 	public static boolean feature2 (IGraph iGraph){
 		boolean testexpectedvalue = false;
 		 ArrayList<IEdge> temp_arraylist = new ArrayList(iGraph.getAllEdges());
@@ -26,8 +26,6 @@ public class Soen6431 {
          return testexpectedvalue;
 		
 	}
-
-
 
     public static String[][] feature3 (IGraph iGraph){
         String[][] tableToShow = new String[iGraph.getAllNodes().size()][2];
