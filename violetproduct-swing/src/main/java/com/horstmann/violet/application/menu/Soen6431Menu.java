@@ -36,22 +36,26 @@ public class Soen6431Menu extends JMenu {
         feature1Item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Collection<INode> allActiveNodes = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllNodes();
-                for (INode currNode : allActiveNodes) {
-                    Collection<IEdge> allActiveEdgeForSpecificNode = currNode.getGraph().getAllEdges();
-                    int count = 0;
-                    for (IEdge currEdge : allActiveEdgeForSpecificNode) {
-                        if (currEdge.getStartNode().equals(currNode) && currEdge.getEndNode().equals(currNode)) {
-                            {
-                                count++;
-                                if (count > 1) {
-                                    mainFrame.getDialogFactory().showErrorDialog("Multi realation to itself Occured");
-                                    return;
-                                }
-                            }
-                        }
-                    }
-                }
+              //  Collection<INode> allActiveNodes = mainFrame.getActiveWorkspace().getGraphFile().getGraph().getAllNodes();
+              //  for (INode currNode : allActiveNodes) {
+                //    Collection<IEdge> allActiveEdgeForSpecificNode = currNode.getGraph().getAllEdges();
+                 //   int count = 0;
+                  //  for (IEdge currEdge : allActiveEdgeForSpecificNode) {
+                    //    if (currEdge.getStartNode().equals(currNode) && currEdge.getEndNode().equals(currNode)) {
+                        //    {
+                       //         count++;
+                           //     if (count > 1) {
+                            //        mainFrame.getDialogFactory().showErrorDialog("Multi realation to itself Occured");
+                                 //   return;
+                        //        }
+                       //     }
+                     //   }
+                  //  }
+            	
+              
+            if (Soen6431.feature1(mainFrame.getActiveWorkspace().getGraphFile().getGraph()))
+                mainFrame.getDialogFactory().showErrorDialog("Multi realation to itself Occured");
+           
             }
         });
         this.add(feature1Item);

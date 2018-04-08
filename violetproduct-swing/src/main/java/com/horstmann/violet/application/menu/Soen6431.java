@@ -1,13 +1,37 @@
 package com.horstmann.violet.application.menu;
 
+
 import com.horstmann.violet.product.diagram.abstracts.IGraph;
 import com.horstmann.violet.product.diagram.abstracts.edge.IEdge;
 import com.horstmann.violet.product.diagram.abstracts.node.INode;
 import com.horstmann.violet.product.diagram.classes.node.ClassNode;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Soen6431 {
+	public static boolean feature1 (IGraph iGraph){
+		boolean fea1 = false;
+		Collection<INode> allActiveNodes =(iGraph.getAllNodes()); ;
+		for (INode currNode : allActiveNodes) {
+            Collection<IEdge> allActiveEdgeForSpecificNode = currNode.getGraph().getAllEdges();
+            int count = 0;
+            for (IEdge currEdge : allActiveEdgeForSpecificNode) {
+                if (currEdge.getStartNode().equals(currNode) && currEdge.getEndNode().equals(currNode)) {
+                    {
+                        count++;
+                        if (count > 1) {
+                         fea1 = true;
+                          
+                        }
+                    }
+                }
+            }
+        }
+		  return fea1;
+	}
+    
+	
 	public static boolean feature2 (IGraph iGraph){
 		boolean testexpectedvalue = false;
 		 ArrayList<IEdge> temp_arraylist = new ArrayList(iGraph.getAllEdges());
